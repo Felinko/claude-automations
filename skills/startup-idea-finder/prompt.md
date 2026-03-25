@@ -25,11 +25,11 @@ Run 4–5 searches on the broad niche:
 [niche] pain points founder freelancer SMB
 ```
 
-From the results, identify **5–8 distinct sub-niches**. For each, assess 3 signal dimensions and present them in this format:
+From the results, identify **5–8 distinct sub-niches**. For each, assess 4 signal dimensions and present them in this format:
 
 ---
 **[Sub-niche name]**
-Market signal: 🔥🔥🔥🔥 · AI leverage: 🤖🤖🤖🤖 · Competition: 🏁 Low
+Market signal: 🔥🔥🔥🔥 · AI leverage: 🤖🤖🤖🤖 · Competition: 🏁 Low · VC interest: 💰💰
 *One-sentence description of the core pain and who has it.*
 
 ---
@@ -38,6 +38,7 @@ Market signal: 🔥🔥🔥🔥 · AI leverage: 🤖🤖🤖🤖 · Competition:
 - 🔥 Market signal (1–4 fires): how frequently this pain appears online — 1 = occasional mentions, 4 = constant complaints across many communities
 - 🤖 AI leverage (1–4 robots): how much AI changes the solution — 1 = marginal, 4 = AI is the core unlock that makes this 10x better
 - 🏁 Competition: Low / Medium / High — based on number and quality of existing tools
+- 💰 VC interest (1–3 coins): how much VC funding has flowed into this space — 1 = minimal, 2 = some early-stage deals, 3 = active funding with recent rounds. High VC interest validates the market but also signals more competition ahead.
 
 Present all sub-niches, then ask:
 > "Which one do you want to drill into? Or say **'pick the best one'** and I'll choose the highest-signal sub-niche."
@@ -70,10 +71,11 @@ Identify **3–5 micro-niches** — distinct customer types with meaningfully di
 
 ## STEP 2C — Niche viability check
 
-Before going deep on research, validate the chosen micro-niche. Run 2 targeted searches:
+Before going deep on research, validate the chosen micro-niche. Run 3 targeted searches:
 ```
 [micro-niche] existing software tools competitors pricing 2025 2026
 [micro-niche] market size number of businesses revenue opportunity
+[micro-niche] startup funding raised VC investment Crunchbase YCombinator a16z 2022 2023 2024 2025
 ```
 
 Present a brief **Niche Viability Summary**:
@@ -81,6 +83,8 @@ Present a brief **Niche Viability Summary**:
 > **Competitive landscape:** [2–3 sentences: who plays here, at what price point, how complete their solutions are]
 >
 > **Market size signal:** [rough estimate — e.g. "~180,000 licensed solo therapists in the US, most paying $80–200/mo across 3–4 fragmented tools"]
+>
+> **VC funding landscape:** [List notable companies that raised funding in this niche. For each: company name, amount raised, year, and stage if known. Then interpret: Does VC interest validate the market? Are rounds early-stage (opportunity still open) or late-stage (likely consolidating)? Example: "Clio raised $900M (legal practice mgmt) — validates the market but targets large firms, leaving solo/small firms underserved."]
 >
 > **Verdict:** 🟢 Green / 🟡 Yellow / 🔴 Red
 > - 🟢 Green = clear gap, proceed
@@ -216,6 +220,7 @@ Use this HTML template (replace all `{{placeholders}}`):
     <h3>Niche Viability</h3>
     <p><strong>Competitive landscape:</strong> {{competition_summary}}</p>
     <p><strong>Market size:</strong> {{market_size}}</p>
+    <p><strong>VC funding:</strong> {{vc_funding_summary}}</p>
     <span class="verdict {{green|yellow|red}}">{{verdict}}</span>
   </div>
 
