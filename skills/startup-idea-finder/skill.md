@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Interactively drill from a broad niche → sub-niches → specific problems, then produce a ranked list of targeted AI startup ideas with strong actionability.
+Interactively drill from a broad niche → scored sub-niches → specific micro-niche (with viability check) → deep problem research → ranked startup ideas. Every level is user-confirmed before proceeding.
 
 ## Invocation
 
@@ -18,35 +18,45 @@ find startup ideas
 
 ## Interactive Flow
 
-This skill is **always interactive**. It never starts researching without first understanding the niche.
+This skill is **always interactive**. It never skips ahead without user input.
 
-### Step 1 — Ask for the broad niche
-Immediately upon invocation, ask:
-> "What space do you want to explore? (e.g. healthcare, B2B SaaS tools, creator economy, legal tech, fintech, remote work, e-commerce)"
+```
+1. Ask for broad direction → wait
 
-Wait for the user's answer before proceeding.
+2. Research + score 5–8 sub-niches
+   Each rated on: 🔥 Market signal · 🤖 AI leverage · 🏁 Competition level
+   → wait for user to pick one
 
-### Step 2 — Research & present sub-niches
-Research the broad niche and surface 5–8 sub-niches. Present them to the user:
-> "Here are the sub-niches I found within [niche]. Which one do you want to drill into? Or should I pick the highest-signal one and go deep?"
+2B. Micro-niche drill
+   Surface 3–5 specific customer types within the chosen sub-niche
+   → wait for user to pick one
 
-Wait for the user's answer.
+2C. Niche viability check
+   Run 2 searches: competition landscape + market size
+   Present: Competitive summary · Market size estimate · 🟢/🟡/🔴 verdict
+   → if 🟡 Yellow or 🔴 Red, offer to pivot before going deep
+   → only proceed on confirmation
 
-### Step 3 — Drill into problems
-Research the chosen sub-niche deeply. Find 15–25 specific problems people face within it.
+3. Deep problem research on confirmed micro-niche (15–25 signals)
 
-### Step 4 — Score & output
-Score each problem, rank, and generate the HTML report.
+4. Cluster into 8–12 specific startup ideas (narrow, product-named)
+
+5. Score each idea (5 dimensions, max 25 pts)
+
+6. Generate HTML report → save to outputs/YYYY-MM-DD-[niche]-[subniche].html
+
+7. Reply with 2-line #1 summary + offer to drill deeper or pivot
+```
 
 ## Output Format
 
-Always save output as an HTML file:
+Always save as HTML:
 ```
 outputs/YYYY-MM-DD-[niche-slug]-[subniche-slug].html
 ```
 
-Use the HTML template defined in `skills/startup-idea-finder/prompt.md`.
+Template defined in `skills/startup-idea-finder/prompt.md`. Report includes a Niche Viability section at the top showing competition, market size, and verdict.
 
 ## Telegram Behavior
 
-When triggered via Telegram, run the same interactive flow — ask the niche question as the first reply, wait for response, then proceed. At the end, send the top 5 ideas as a concise text reply and save the full HTML report to `outputs/`.
+Same interactive flow — reply with each question, wait for response. At the end, send the top 5 ideas as a concise text reply and note the file path of the full HTML report.

@@ -1,73 +1,126 @@
 # Research Prompt: AI Startup Idea Finder
 
-Follow every step in order. Steps 1–2 require user input before continuing.
+Follow every step in order. Steps marked **→ WAIT** require user input before continuing.
 
 ---
 
-## STEP 1 — Ask for the broad niche
+## STEP 1 — Ask for the broad direction
 
-Say exactly this (or close to it):
+Say:
+> **"What space do you want to explore?"**
+> (e.g. healthcare, legal tech, fintech, e-commerce ops, creator economy, construction, remote work, education — or describe the type of problem you're drawn to.)
 
-> **"What space do you want to explore?**
-> Examples: healthcare admin, B2B SaaS tooling, creator economy, legal tech, fintech, e-commerce ops, remote work, education, construction, real estate.
-> Or just describe the type of problem you're drawn to."
-
-**Wait for the user to reply. Do not proceed until you have their answer.**
+**→ WAIT for user reply before proceeding.**
 
 ---
 
-## STEP 2 — Research sub-niches & ask the user to pick one
+## STEP 2 — Research & score sub-niches
 
-Using WebSearch, find the landscape within the broad niche. Run 3–4 searches:
-- "[niche] problems Reddit 2025 2026"
-- "[niche] startup opportunities underserved market"
-- "[niche] pain points small business OR freelancer OR founder"
+Run 4–5 searches on the broad niche:
+```
+[niche] problems Reddit 2025 2026 pain points
+[niche] startup opportunities underserved market AI
+[niche] "no good tool" OR "manually" OR "takes hours" small business
+[niche] micro SaaS opportunity niche 2026
+[niche] pain points founder freelancer SMB
+```
 
-From the results, identify **5–8 distinct sub-niches** — coherent problem clusters within the broad space.
+From the results, identify **5–8 distinct sub-niches**. For each, assess 3 signal dimensions and present them in this format:
 
-Present them clearly:
+---
+**[Sub-niche name]**
+Market signal: 🔥🔥🔥🔥 · AI leverage: 🤖🤖🤖🤖 · Competition: 🏁 Low
+*One-sentence description of the core pain and who has it.*
 
-> **"Here are the sub-niches I found within [niche]:**
-> 1. [Sub-niche A] — e.g. "Solo practitioner billing & admin"
-> 2. [Sub-niche B]
-> 3. [Sub-niche C]
-> ...
+---
+
+**Signal rating guide:**
+- 🔥 Market signal (1–4 fires): how frequently this pain appears online — 1 = occasional mentions, 4 = constant complaints across many communities
+- 🤖 AI leverage (1–4 robots): how much AI changes the solution — 1 = marginal, 4 = AI is the core unlock that makes this 10x better
+- 🏁 Competition: Low / Medium / High — based on number and quality of existing tools
+
+Present all sub-niches, then ask:
+> "Which one do you want to drill into? Or say **'pick the best one'** and I'll choose the highest-signal sub-niche."
+
+**→ WAIT for user reply before proceeding.**
+
+---
+
+## STEP 2B — Micro-niche drill
+
+Run 2–3 searches to map the specific customer types within the chosen sub-niche:
+```
+[sub-niche] specific customer types segments
+[sub-niche] who uses Reddit community forum discussion
+[sub-niche] niche vertical "specifically for"
+```
+
+Identify **3–5 micro-niches** — distinct customer types with meaningfully different pain profiles. Present them clearly:
+
+> **Within [sub-niche], I found these specific customer types:**
+> 1. **[Micro-niche A]** — e.g. "Mental health therapists (HIPAA + insurance billing specific)"
+> 2. **[Micro-niche B]** — e.g. "Life & business coaches (no insurance, different admin pain)"
+> 3. **[Micro-niche C]** — ...
 >
-> Which one do you want to drill into? Or say 'pick the best one' and I'll choose the highest-signal sub-niche."
+> Which customer type resonates most? Or should I research across all of them?
 
-**Wait for the user's choice before proceeding.**
-
----
-
-## STEP 3 — Deep research on the chosen sub-niche
-
-Run **6–8 targeted searches** on the chosen sub-niche. Vary the angle:
-
-```
-site:reddit.com [sub-niche] pain points tool missing
-[sub-niche] "I wish" OR "why is there no" OR "manually" automation
-[sub-niche] startup ideas 2025 2026 underserved
-[sub-niche] problems no good software solution
-reddit [sub-niche] "takes hours" OR "so frustrated" OR "waste time"
-[sub-niche] micro SaaS opportunity niche
-```
-
-For each search result, extract:
-- The specific problem described (one sentence)
-- Who has the problem (role / company type)
-- How often it seems to occur (rare / common / ubiquitous)
-- Whether AI could meaningfully solve it
-
-Aim to collect **15–25 distinct problems**. Duplicates across sources strengthen a signal — note them.
+**→ WAIT for user reply before proceeding.**
 
 ---
 
-## STEP 4 — Cluster into targeted ideas
+## STEP 2C — Niche viability check
 
-Group the raw problems into **8–12 specific startup ideas**. Each idea should be:
-- Narrow enough to build an MVP in 6 weeks
-- Solving one clearly-articulated problem, not a vague space
-- Named like a product, not a category (e.g. "AI proposal writer for UX freelancers" not "freelancer tools")
+Before going deep on research, validate the chosen micro-niche. Run 2 targeted searches:
+```
+[micro-niche] existing software tools competitors pricing 2025 2026
+[micro-niche] market size number of businesses revenue opportunity
+```
+
+Present a brief **Niche Viability Summary**:
+
+> **Competitive landscape:** [2–3 sentences: who plays here, at what price point, how complete their solutions are]
+>
+> **Market size signal:** [rough estimate — e.g. "~180,000 licensed solo therapists in the US, most paying $80–200/mo across 3–4 fragmented tools"]
+>
+> **Verdict:** 🟢 Green / 🟡 Yellow / 🔴 Red
+> - 🟢 Green = clear gap, proceed
+> - 🟡 Yellow = crowded but beatable, flag the angle needed to win, ask if user wants to proceed or pivot
+> - 🔴 Red = dominated market, strongly recommend pivoting to an adjacent micro-niche
+
+If 🟡 or 🔴, suggest 1–2 adjacent micro-niches to consider before committing.
+
+**Only proceed to Step 3 if user confirms (explicitly or implicitly by not objecting).**
+
+---
+
+## STEP 3 — Deep problem research
+
+Run **6–8 targeted searches** on the confirmed micro-niche:
+```
+reddit [micro-niche] pain points tool missing frustrated
+[micro-niche] "I wish" OR "why is there no" OR "manually" software
+[micro-niche] problems no good solution 2025 2026
+reddit [micro-niche] "takes hours" OR "waste time" OR "so annoying"
+[micro-niche] workflow frustrations Reddit forum community
+[micro-niche] SaaS opportunity underserved
+```
+
+For each result, extract:
+- The specific problem (one sentence)
+- Who has it (role / company type / size)
+- Frequency signal (rare / common / ubiquitous)
+- Whether AI meaningfully solves it
+
+Aim for **15–25 distinct problems**. Duplicate signals across sources = stronger signal, note them.
+
+---
+
+## STEP 4 — Cluster into targeted startup ideas
+
+Group raw problems into **8–12 specific startup ideas**. Each idea must be:
+- **Narrow enough** to build an MVP in 6 weeks
+- **Named like a product**, not a category (e.g. "AI intake form + insurance verifier for solo therapists" not "healthcare admin tool")
+- Solving **one clearly-articulated problem**, not a vague space
 
 ---
 
@@ -75,13 +128,13 @@ Group the raw problems into **8–12 specific startup ideas**. Each idea should 
 
 Score 1–5 on each dimension from `reference/idea-evaluation-criteria.md`:
 
-| Dimension | Weight |
-|-----------|--------|
-| Problem Frequency | ×1 |
-| AI Leverage Potential | ×1 |
-| Market Size Signal | ×1 |
-| Solution Gap | ×1 |
-| Monetization Clarity | ×1 |
+| Dimension | What it measures |
+|-----------|-----------------|
+| Problem Frequency | How often this appears across sources |
+| AI Leverage | Does AI provide a 10x solution? |
+| Market Size | How many potential customers? |
+| Solution Gap | How bad are current alternatives? |
+| Monetization Clarity | Clear, willing buyer? |
 
 Max: 25. Include a one-sentence rationale per score.
 
@@ -89,12 +142,12 @@ Max: 25. Include a one-sentence rationale per score.
 
 ## STEP 6 — Generate HTML report
 
-Save the output as:
+Save output as:
 ```
 outputs/YYYY-MM-DD-[niche-slug]-[subniche-slug].html
 ```
 
-Use this HTML template exactly (replace all `{{placeholders}}`):
+Use this HTML template (replace all `{{placeholders}}`):
 
 ```html
 <!DOCTYPE html>
@@ -110,42 +163,61 @@ Use this HTML template exactly (replace all `{{placeholders}}`):
     header{border-bottom:1px solid #2a2a36;padding-bottom:28px;margin-bottom:40px}
     h1{font-size:1.8rem;font-weight:700;color:#fff}
     h1 span{color:#7c6cf8}
-    .meta{display:flex;gap:20px;margin-top:14px;flex-wrap:wrap}
+    .meta{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
     .chip{background:#1a1a24;border:1px solid #2a2a36;border-radius:20px;padding:4px 12px;font-size:0.75rem;color:#aaa}
     h2{font-size:1.1rem;font-weight:600;color:#fff;margin:44px 0 16px;padding-bottom:8px;border-bottom:1px solid #1e1e2a}
-    table{width:100%;border-collapse:collapse;font-size:0.85rem}
-    th{text-align:left;padding:10px 12px;font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:#555;background:#1a1a24}
+    table{width:100%;border-collapse:collapse;font-size:0.84rem}
+    th{text-align:left;padding:10px 12px;font-size:0.67rem;text-transform:uppercase;letter-spacing:1px;color:#555;background:#1a1a24;white-space:nowrap}
     td{padding:12px;border-bottom:1px solid #1a1a24;vertical-align:top}
     tr:hover td{background:#13131c}
-    .rank{color:#555;font-weight:700;text-align:center;width:36px}
+    .rank{color:#555;font-weight:700;text-align:center;width:32px}
     .idea-name{font-weight:600;color:#c4b5fd}
     .problem{color:#aaa}
     .ai{color:#86efac}
-    .score{font-weight:700;text-align:center;white-space:nowrap}
+    .score-cell{font-weight:700;text-align:right;white-space:nowrap;padding-right:16px}
     .hi{color:#a78bfa}.mid{color:#7dd3fc}.lo{color:#6b7280}
-    .bar{display:inline-block;width:40px;height:3px;background:#1e1e2a;border-radius:2px;margin-left:6px;vertical-align:middle}
+    .bar{display:flex;align-items:center;gap:6px;margin-top:4px}
+    .bar-track{height:3px;background:#1e1e2a;border-radius:2px;flex:1}
     .bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#7c6cf8,#a78bfa)}
     .card{background:#13131c;border:1px solid #1e1e2a;border-radius:10px;padding:24px 28px;margin-bottom:20px}
     .card-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
     .badge{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#7c6cf8,#a78bfa);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;color:#fff;flex-shrink:0}
-    .card-title{font-size:1rem;font-weight:700;color:#fff}
-    .card-score{margin-left:auto;font-weight:700;color:#a78bfa}
-    .section-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:#7c6cf8;margin-bottom:4px;margin-top:14px}
+    .card-title{font-size:1rem;font-weight:700;color:#fff;flex:1}
+    .card-score{font-weight:700;color:#a78bfa;font-size:1rem}
+    .lbl{font-size:0.67rem;text-transform:uppercase;letter-spacing:1px;color:#7c6cf8;margin-bottom:4px;margin-top:16px}
     .card p{color:#bbb;font-size:0.875rem}
-    .sources a{color:#7c6cf8;text-decoration:none;font-size:0.85rem;display:block;margin-top:8px}
+    .scoring-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+    .score-pill{background:#1a1a24;border:1px solid #2a2a36;border-radius:6px;padding:3px 10px;font-size:0.75rem;color:#aaa}
+    .score-pill span{color:#a78bfa;font-weight:600}
+    .sources{margin-top:48px}
+    .sources ul{list-style:none}
+    .sources li{margin-top:8px}
+    .sources a{color:#7c6cf8;text-decoration:none;font-size:0.85rem}
     .sources a:hover{text-decoration:underline}
+    .viability{background:#13131c;border:1px solid #1e1e2a;border-radius:10px;padding:20px 24px;margin-bottom:32px}
+    .viability h3{font-size:0.85rem;font-weight:600;color:#fff;margin-bottom:12px}
+    .viability p{color:#aaa;font-size:0.85rem;margin-top:6px}
+    .verdict{display:inline-block;padding:2px 10px;border-radius:12px;font-size:0.75rem;font-weight:600;margin-top:10px}
+    .green{background:#14532d;color:#86efac}.yellow{background:#713f12;color:#fde68a}.red{background:#7f1d1d;color:#fca5a5}
   </style>
 </head>
 <body>
 <div class="container">
   <header>
-    <h1>{{Niche}} — <span>{{Sub-niche}}</span></h1>
+    <h1>{{Niche}} — <span>{{Micro-niche}}</span></h1>
     <div class="meta">
       <span class="chip">{{Date}}</span>
       <span class="chip">{{N}} ideas ranked</span>
       <span class="chip">{{signal_count}} signals collected</span>
     </div>
   </header>
+
+  <div class="viability">
+    <h3>Niche Viability</h3>
+    <p><strong>Competitive landscape:</strong> {{competition_summary}}</p>
+    <p><strong>Market size:</strong> {{market_size}}</p>
+    <span class="verdict {{green|yellow|red}}">{{verdict}}</span>
+  </div>
 
   <h2>Ranked Ideas</h2>
   <table>
@@ -159,13 +231,12 @@ Use this HTML template exactly (replace all `{{placeholders}}`):
         <td><span class="idea-name">{{idea_name}}</span></td>
         <td class="problem">{{core_problem}}</td>
         <td class="ai">{{ai_angle}}</td>
-        <td class="score {{hi|mid|lo}}">{{score}}/25<span class="bar"><span class="bar-fill" style="width:{{pct}}%"></span></span></td>
+        <td class="score-cell {{hi|mid|lo}}">{{score}}/25<div class="bar"><div class="bar-track"><div class="bar-fill" style="width:{{pct}}%"></div></div></div></td>
       </tr>
     </tbody>
   </table>
 
   <h2>Top 3 Deep Dives</h2>
-
   <!-- Repeat for top 3: -->
   <div class="card">
     <div class="card-header">
@@ -173,21 +244,27 @@ Use this HTML template exactly (replace all `{{placeholders}}`):
       <div class="card-title">{{idea_name}}</div>
       <div class="card-score">{{score}}/25</div>
     </div>
-    <div class="section-label">Why the problem is real</div>
+    <div class="lbl">Why the problem is real</div>
     <p>{{why_real}}</p>
-    <div class="section-label">Who the customer is</div>
+    <div class="lbl">Who the customer is</div>
     <p>{{customer}}</p>
-    <div class="section-label">How AI makes it 10x better</div>
+    <div class="lbl">How AI makes it 10x better</div>
     <p>{{ai_leverage}}</p>
-    <div class="section-label">What a v1 looks like</div>
+    <div class="lbl">What a v1 looks like</div>
     <p>{{v1}}</p>
-    <div class="section-label">Scoring breakdown</div>
-    <p>Frequency {{f}}/5 · AI leverage {{a}}/5 · Market {{m}}/5 · Solution gap {{g}}/5 · Monetization {{mo}}/5</p>
+    <div class="lbl">Scoring breakdown</div>
+    <div class="scoring-row">
+      <span class="score-pill">Frequency <span>{{f}}/5</span></span>
+      <span class="score-pill">AI Leverage <span>{{a}}/5</span></span>
+      <span class="score-pill">Market <span>{{m}}/5</span></span>
+      <span class="score-pill">Solution gap <span>{{g}}/5</span></span>
+      <span class="score-pill">Monetization <span>{{mo}}/5</span></span>
+    </div>
   </div>
 
   <h2>Sources</h2>
   <div class="sources">
-    <!-- list source links -->
+    <ul><!-- list source links --></ul>
   </div>
 </div>
 </body>
@@ -198,7 +275,7 @@ Use this HTML template exactly (replace all `{{placeholders}}`):
 
 ## STEP 7 — Final reply
 
-After saving the file, tell the user:
-- The file path where the report was saved
-- A 3-line summary of the #1 idea
-- Offer to drill deeper into any single idea or pivot to a different sub-niche
+After saving the HTML file, tell the user:
+- The file path of the saved report
+- A 2-line summary of the #1 idea
+- Offer: drill deeper into any single idea, explore a different micro-niche, or pivot to a new sub-niche
