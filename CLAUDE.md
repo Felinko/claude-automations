@@ -2,64 +2,79 @@
 
 ## Project Overview
 
-This project uses Claude to find AI startup ideas by scanning the internet (Reddit and beyond) for signals — pain points, unsolved problems, and underserved niches — then producing a ranked, actionable list of opportunities with strong AI-leverage potential.
+This project uses Claude to find targeted AI startup ideas by interactively drilling from a broad niche → sub-niches → specific problems, then producing a ranked, actionable report.
 
 ## Folder Structure
 
 ```
 Claude_Automations/
-├── CLAUDE.md                          ← You are here
+├── CLAUDE.md                                  ← You are here
 ├── skills/
 │   └── startup-idea-finder/
-│       ├── skill.md                   ← How to invoke the skill
-│       └── prompt.md                  ← The research & analysis prompt
+│       ├── skill.md                           ← Invocation & interactive flow
+│       └── prompt.md                          ← Step-by-step research prompt + HTML template
 ├── reference/
-│   ├── subreddits.md                  ← Curated subreddits to search
-│   └── idea-evaluation-criteria.md   ← Scoring rubric
-└── outputs/                           ← Per-run results saved here
+│   ├── subreddits.md                          ← Curated subreddits to search
+│   └── idea-evaluation-criteria.md           ← Scoring rubric (5 dimensions, max 25)
+└── outputs/                                   ← Per-run HTML reports saved here
 ```
 
 ## How to Use
 
 ### Local (Claude Code terminal)
-Run the skill directly:
 ```
 /startup-idea-finder
-/startup-idea-finder [optional: topic focus, e.g. "healthcare AI"]
 ```
+Claude will immediately ask: **"What space do you want to explore?"**
+Then drill: broad niche → sub-niche selection → deep research → ranked HTML report.
 
 ### Via Telegram
-Send a message to the bot:
-```
-find startup ideas
-find startup ideas about [topic]
-```
-Claude will reply with the top 10 ideas inline and save the full report to `outputs/`.
+Send: `find startup ideas`
+Same interactive flow — Claude replies asking for the niche, waits for your answer, proceeds.
 
-## Output Convention
+## Interactive Flow (always followed)
 
-Every run saves a file to `outputs/` named:
 ```
-outputs/YYYY-MM-DD-[topic-slug].md
+1. Ask user for broad niche  →  wait for reply
+2. Research + present 5–8 sub-niches  →  wait for user to pick one
+3. Deep research on chosen sub-niche  →  collect 15–25 specific problems
+4. Cluster into 8–12 targeted startup ideas
+5. Score each (5 dimensions, max 25)
+6. Generate HTML report  →  save to outputs/
+7. Reply with summary + offer to drill deeper
 ```
 
-The output contains a ranked markdown table:
+## Output Format
 
-| Rank | Niche | Core Problem | AI Leverage | Score |
-|------|-------|-------------|-------------|-------|
-| 1    | ...   | ...         | ...         | 23/25 |
+**HTML files only.** Saved to `outputs/` as:
+```
+outputs/YYYY-MM-DD-[niche-slug]-[subniche-slug].html
+```
+
+HTML is used over markdown because:
+- Human-readable in any browser without plugins
+- Minimal token overhead (~30% more than markdown for equivalent content)
+- Allows clean visual hierarchy (score bars, cards, color coding)
+- The template in `prompt.md` is compact and reused every run
 
 ## Key Constraints
 
-- **Focus on AI-leverageable problems** — prioritize problems where AI provides a 10x better solution, not just a marginal improvement.
-- **Prefer underserved niches** — if there's already a dominant, well-funded product solving the problem, deprioritize it.
-- **Signal over noise** — a problem mentioned repeatedly across multiple subreddits and time periods is stronger than a single viral post.
-- **Monetization clarity** — flag ideas with clear B2B or subscription revenue potential higher.
+- **Always interactive** — never start researching without first asking for the niche
+- **Drill to specificity** — ideas should be narrow enough to build an MVP in 6 weeks
+- **AI-leverage focus** — prioritize problems where AI provides a 10x improvement, not marginal help
+- **Solution gap** — deprioritize if a dominant well-funded product already exists
+- **Signal over noise** — problems recurring across multiple subreddits/sources score higher
 
-## Workflow Summary
+## Scoring Rubric (quick reference)
 
-```
-Search Reddit → Extract pain signals → Cluster into niches → Score → Rank → Output
-```
+Each dimension scored 1–5. Max total: **25**.
 
-See `skills/startup-idea-finder/prompt.md` for the full step-by-step research prompt.
+| Dimension | What it measures |
+|-----------|-----------------|
+| Problem Frequency | How often this appears across sources |
+| AI Leverage | Does AI provide a 10x solution? |
+| Market Size | How many potential customers? |
+| Solution Gap | How bad are current alternatives? |
+| Monetization Clarity | Is there a clear, willing buyer? |
+
+Full rubric: `reference/idea-evaluation-criteria.md`

@@ -2,53 +2,51 @@
 
 ## Purpose
 
-Research the internet for signals of unmet needs and pain points, then surface a ranked list of startup ideas with strong AI-leverage potential.
+Interactively drill from a broad niche → sub-niches → specific problems, then produce a ranked list of targeted AI startup ideas with strong actionability.
 
 ## Invocation
 
 **Local (Claude Code terminal):**
 ```
 /startup-idea-finder
-/startup-idea-finder healthcare AI
-/startup-idea-finder B2B SaaS tools
 ```
 
 **Via Telegram:**
 ```
 find startup ideas
-find startup ideas about [topic]
 ```
 
-## Inputs
+## Interactive Flow
 
-| Input | Required | Description |
-|-------|----------|-------------|
-| `topic` | Optional | Narrow the search to a specific domain (e.g., "legal tech", "remote work tools") |
-| `subreddits` | Optional | Override the default subreddit list from `reference/subreddits.md` |
+This skill is **always interactive**. It never starts researching without first understanding the niche.
 
-If no topic is provided, run a broad search across all subreddits in `reference/subreddits.md`.
+### Step 1 — Ask for the broad niche
+Immediately upon invocation, ask:
+> "What space do you want to explore? (e.g. healthcare, B2B SaaS tools, creator economy, legal tech, fintech, remote work, e-commerce)"
 
-## Outputs
+Wait for the user's answer before proceeding.
 
-1. **Ranked markdown table** — saved to `outputs/YYYY-MM-DD-[topic-slug].md`
-2. **Telegram reply** — top 10 ideas sent inline if triggered via Telegram
+### Step 2 — Research & present sub-niches
+Research the broad niche and surface 5–8 sub-niches. Present them to the user:
+> "Here are the sub-niches I found within [niche]. Which one do you want to drill into? Or should I pick the highest-signal one and go deep?"
 
-## Behavior
+Wait for the user's answer.
 
-When this skill is invoked, execute the full prompt in `skills/startup-idea-finder/prompt.md`.
+### Step 3 — Drill into problems
+Research the chosen sub-niche deeply. Find 15–25 specific problems people face within it.
 
-When triggered via **Telegram**:
-- Run the full research workflow
-- Reply to the Telegram chat with a concise top-10 list (use the `reply` MCP tool)
-- Save the full report to `outputs/`
+### Step 4 — Score & output
+Score each problem, rank, and generate the HTML report.
 
-## Example Output Format
+## Output Format
 
-```markdown
-## Startup Ideas — [Date] — [Topic]
-
-| Rank | Niche | Core Problem | AI Leverage | Score |
-|------|-------|-------------|-------------|-------|
-| 1 | Legal contract review for freelancers | No affordable tool for non-lawyers to review contracts | AI can flag risky clauses instantly | 23/25 |
-| 2 | ... | ... | ... | ... |
+Always save output as an HTML file:
 ```
+outputs/YYYY-MM-DD-[niche-slug]-[subniche-slug].html
+```
+
+Use the HTML template defined in `skills/startup-idea-finder/prompt.md`.
+
+## Telegram Behavior
+
+When triggered via Telegram, run the same interactive flow — ask the niche question as the first reply, wait for response, then proceed. At the end, send the top 5 ideas as a concise text reply and save the full HTML report to `outputs/`.
