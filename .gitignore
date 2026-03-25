@@ -1,0 +1,10 @@
+# Claude local config (contains secrets and local settings)
+.claude/
+
+# DS Store
+.DS_Store
+
+# Output files (generated per-run; exclude from repo)
+# Comment this out if you want to track outputs in git
+outputs/*
+!outputs/.gitkeep
